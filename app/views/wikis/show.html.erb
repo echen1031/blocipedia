@@ -1,2 +1,2 @@
 <h1>Wikis#show</h1>
-<%= raw @marked_wiki %>
+<%= @markdown.render(@wiki.description).html_safe %>

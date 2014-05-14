@@ -11,6 +11,7 @@ feature 'User creates wiki with markdown' do
     click_button 'Save'
     # should be back at list of wikis
     click_link "Baseball"  # assuming you can click on name of wiki to see it
+    save_and_open_page
     expect(page.html).to include('<h2>Markdown</h2>')
   end
 

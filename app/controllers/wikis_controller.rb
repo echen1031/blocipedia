@@ -27,8 +27,7 @@ class WikisController < ApplicationController
   end
 
   def show
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-    @marked_wiki = markdown.render(@wiki.description)
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
   end
 
   def destroy
