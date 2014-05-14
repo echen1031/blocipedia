@@ -41,5 +41,7 @@ gem 'devise'
 gem 'faker'
 gem 'figaro'
 gem 'redcarpet'
-
+gem 'stripe'
+gem 'haml'
+gem 'haml-rails'
 

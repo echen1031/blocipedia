@@ -1,0 +1,8 @@
+= form_tag charges_path do
+
+  /The form doesn't pass the amount to the create action,
+  /so we have to pass it manually.
+  = hidden_field_tag :amount, @stripe_btn_hash[:data][:amount]
+
+  %h4 Click the button!
+  %script{ @stripe_btn_hash }
