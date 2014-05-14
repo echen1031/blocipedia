@@ -18,6 +18,8 @@ group :development, :test do
   gem 'pry'
   gem 'factory_girl_rails', '~>4.0'
   gem 'database_cleaner'
+  gem 'shoulda'
+  gem 'launchy'
 end
 
 
@@ -38,5 +40,6 @@ end
 gem 'devise'
 gem 'faker'
 gem 'figaro'
+gem 'redcarpet'
 
 
