@@ -6,7 +6,6 @@ feature 'User creates wiki with markdown' do
     user = FactoryGirl.create(:user) 
     login_as(user, :scope => :user)
     visit wikis_path
-    save_and_open_page
     click_link 'New wiki'
     fill_in 'Name', with: 'Baseball'
     fill_in 'Description', with: "##Markdown"  # should be rendered as <h2>

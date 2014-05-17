@@ -1,5 +1,6 @@
 class WikisController < ApplicationController
   before_filter :set_wiki, only: [:show, :edit, :update, :destroy]
+  before_filter :current_user_wikis
   
   def index
     @wikis = Wiki.all
@@ -59,5 +60,9 @@ class WikisController < ApplicationController
 
   def set_wiki
     @wiki = Wiki.find(params[:id])
+  end
+
+  def current_user_wikis
+    @my_wiki = current_user.wikis
   end
 end
