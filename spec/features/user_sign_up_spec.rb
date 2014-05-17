@@ -4,7 +4,6 @@ feature 'User can sign up for blocipedia account' do
   scenario 'successfully' do
     visit root_path
     click_link 'Sign up'
-    #save_and_open_page
     fill_in 'user_username', with: 'Echen'
     fill_in 'Email', with: 'eric87chen@example.com'
     fill_in 'Password', with: 'helloworld'

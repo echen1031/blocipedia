@@ -2,9 +2,10 @@ require 'spec_helper'
 
 feature 'User visits blocipedia' do
 
-  let(:user) { create :user }
-  
   scenario 'log in and out successfulyy' do
+    user = FactoryGirl.create(:user) 
+    user.confirmed_at = Time.now
+    user.save
     visit root_path
     click_link 'Sign in'
     fill_in 'Email', with: user.email

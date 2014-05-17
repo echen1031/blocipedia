@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514153200) do
+ActiveRecord::Schema.define(version: 20140515175338) do
 
   create_table "users", force: true do |t|
-    t.string   "name"
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
@@ -33,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140514153200) do
     t.datetime "updated_at"
     t.string   "username"
     t.boolean  "premium",                default: false
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140514153200) do
   create_table "wikis", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.boolean  "public"
+    t.boolean  "public",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"

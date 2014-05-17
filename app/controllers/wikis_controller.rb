@@ -3,27 +3,38 @@ class WikisController < ApplicationController
   
   def index
     @wikis = Wiki.all
+    authorize @wikis
   end
 
   def new
     @wiki = Wiki.new
+    authorize @wiki
   end
 
   def create
-    @wiki = Wiki.new(wiki_params)
+    @wiki = current_user.wikis.build(wiki_params)
 
+    authorize @wiki
     if @wiki.save
       redirect_to wikis_path, notice: 'Wiki saved successfully'
     else
-      flash[:error] = 'Wiki needs a name'
+      flash[:notice] = 'Wiki needs a name'
       render :new
     end
   end
 
   def edit
+    authorize @wiki
   end
 
   def update
+    authorize @wiki
+    if @wiki.update_attributes(wiki_params)
+      redirect_to wikis_path, notice: 'Wiki saved successfully'
+    else
+      flash[:notice] = 'Error saving wiki. Please try again'
+      render :edit
+    end
   end
 
   def show
@@ -31,6 +42,13 @@ class WikisController < ApplicationController
   end
 
   def destroy
+    if @wiki.destroy
+      flash[:notice] = "Wiki deleted successfully"
+      redirect_to wikis_path
+    else
+      flash[:notice] = "Error deleting wiki. Please try again"
+      render :show
+    end
   end
 
   private 

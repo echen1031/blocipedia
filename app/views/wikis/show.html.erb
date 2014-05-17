@@ -1,2 +1,20 @@
 <h1>Wikis#show</h1>
 <%= @markdown.render(@wiki.description).html_safe %>
+<h1><%= @wiki.name %></h1>
+
+<% if policy(@wiki).edit? %>
+  <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-success' %>
+<% end %>
+  
+<div class="row">
+  <div class="col-md-8">
+    <p class="lead"><%= @wiki.description %></p>
+    <% if policy(Wiki.new).create? %>
+      <%= link_to "New Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %>
+    <% end %>
+    <% if policy(@wiki).destroy? %>
+      <%= link_to "Delete", @wiki, method: :delete, class: 'btn btn-danger', :data => { :confirm => 'Are you sure you want to delete this wiki?' } %>
+    <% end %>
+  </div>
+</div>
+

@@ -1,8 +1,9 @@
-<h1>Wikis#index</h1>
-<%= link_to 'New wiki', new_wiki_path %>
+<% if policy(Wiki.new).create? %>
+  <%= link_to 'New wiki', new_wiki_path, class: 'btn btn-success' %>
+<% end %>
 
 
-<h2> My Wikis</h2>
+<h2>All Public Wikis</h2>
 
 <% @wikis.each do |wiki| %>
   <%= link_to wiki.name, wiki %>

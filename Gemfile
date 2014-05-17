@@ -20,6 +20,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda'
   gem 'launchy'
+  gem 'warden'
+  gem 'rack-test', require: 'rack/test'
 end
 
 
@@ -44,4 +46,5 @@ gem 'redcarpet'
 gem 'stripe'
 gem 'haml'
 gem 'haml-rails'
+gem 'pundit'
 
