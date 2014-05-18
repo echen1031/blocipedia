@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   before_filter :set_wiki, only: [:show, :edit, :update, :destroy]
-  before_filter :current_user_wikis
+  before_filter :current_user_wikis, except: [:index]
   
   def index
     @wikis = Wiki.all
