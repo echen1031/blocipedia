@@ -3,8 +3,8 @@ class WikisController < ApplicationController
   before_filter :current_user_wikis, except: [:index]
   
   def index
-    @wikis = Wiki.all
-    authorize @wikis
+    @public_wikis = Wiki.public
+    authorize @public_wikis
   end
 
   def new
