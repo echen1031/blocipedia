@@ -1,4 +1,4 @@
-class Sharedwiki < ActiveRecord::Base
+class Collaboration < ActiveRecord::Base
   validates :user_id, presence: true
   validates :wiki_id, presence: true
   belongs_to :wiki

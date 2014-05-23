@@ -13,7 +13,7 @@ FactoryGirl.define do
     role "admin"
   end
 
-  factory :premium, parent: :user do
+  factory :premium_user, parent: :user do
     premium true
   end
 end

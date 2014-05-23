@@ -4,7 +4,7 @@ Blocipedia::Application.routes.draw do
   devise_for :users
   root :to => "welcome#index"
   resources :wikis do
-    resources :collaborators, only: [:index, :new, :create, :destroy]
+    resources :collaborations, only: [:index, :new, :create, :destroy]
   end
   get :my_wiki, controller: 'wikis'
   resources :charges, only: [:new, :create]

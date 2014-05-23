@@ -5,6 +5,6 @@ class Wiki < ActiveRecord::Base
 
   scope :public, lambda{ where ({:public => true}) }
   scope :private, lambda{ where ({:public => false}) }
-  has_many :collaborations, :class_name => "Sharedwiki"
-  has_many :users, :through => :sharedwiki
+  has_many :collaborations, :class_name => "Collaboration"
+  has_many :collaborators, :class_name => "user", :through => :collaboration
 end
