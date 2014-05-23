@@ -10,4 +10,13 @@ class User < ActiveRecord::Base
   def role?(base_role)
     role == base_role.to_s
   end
+
+  def set_premium
+    update_attribute(:premium, true)
+  end
 end
+
+
+
+
+

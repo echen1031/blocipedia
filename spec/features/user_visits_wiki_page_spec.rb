@@ -1,12 +1,10 @@
 require 'spec_helper'
 
 feature 'Creating a wiki' do
-  before do
-    user = FactoryGirl.create(:user) 
-    login_as(user, :scope => :user)
-  end
 
   scenario 'successfully creating a wiki' do
+    user = FactoryGirl.create(:user) 
+    login_as(user, :scope => :user)
     visit wikis_path
     click_link 'New wiki'
     fill_in 'Name', with: 'Baseball'
@@ -18,6 +16,8 @@ feature 'Creating a wiki' do
   end
 
   scenario 'unsuccessfully creating a wiki' do
+    user = FactoryGirl.create(:user) 
+    login_as(user, :scope => :user)
     visit wikis_path
     click_link 'New wiki'
     fill_in 'Description', with: 'Pitchers'

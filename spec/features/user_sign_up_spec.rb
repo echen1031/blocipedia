@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'User can sign up for blocipedia account' do
   scenario 'successfully' do
     visit root_path
-    click_link 'Sign up'
+    click_link 'Sign Up'
     fill_in 'user_username', with: 'Echen'
     fill_in 'Email', with: 'eric87chen@example.com'
     fill_in 'Password', with: 'helloworld'

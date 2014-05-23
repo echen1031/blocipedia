@@ -22,6 +22,7 @@ group :development, :test do
   gem 'launchy'
   gem 'warden'
   gem 'rack-test', require: 'rack/test'
+  gem 'guard-rspec', '2.5.0'
 end
 
 
@@ -47,4 +48,6 @@ gem 'stripe'
 gem 'haml'
 gem 'haml-rails'
 gem 'pundit'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'stripe-ruby-mock', '~> 1.10.1.7'
 

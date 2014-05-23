@@ -1,4 +1,6 @@
 class ChargesController < ApplicationController
+  before_filter :authenticate_user!
+
   def create
     @amount = params[:amount]
 
@@ -16,7 +18,10 @@ class ChargesController < ApplicationController
       currency: 'usd'
     )
 
-    flash[:success] = "Thanks for your payment, #{current_user.username}!"
+    flash[:notice] = "Thanks for your payment, #{current_user.username}!  You are now a premium wiki user."
+
+    current_user.set_premium
+
     redirect_to wikis_path
     
     #Stripe will send back CardErrors, with friendly messages

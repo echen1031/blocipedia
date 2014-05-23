@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   before_filter :set_wiki, only: [:show, :edit, :update, :destroy]
-  before_filter :current_user_wikis, except: [:index]
+  before_filter :authenticate_user!, except: [:index]
   
   def index
     @public_wikis = Wiki.public
@@ -13,7 +13,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = current_user.wikis.build(wiki_params)
+    @wiki = Wiki.find(params[:wiki_id])
 
     authorize @wiki
     if @wiki.save
@@ -52,17 +52,17 @@ class WikisController < ApplicationController
     end
   end
 
+  def my_wiki
+    @my_wiki = current_user.wikis
+  end
+
   private 
-    
+       
   def wiki_params
     params.require(:wiki).permit(:name, :description, :public)
   end
 
   def set_wiki
     @wiki = Wiki.find(params[:id])
-  end
-
-  def current_user_wikis
-    @my_wiki = current_user.wikis
   end
 end
