@@ -3,8 +3,10 @@ class Wiki < ActiveRecord::Base
   validates :name, presence: true
   validates :user_id, presence: true
 
+  belongs_to :user
+
   scope :public, lambda{ where ({:public => true}) }
   scope :private, lambda{ where ({:public => false}) }
-  has_many :collaborations, :class_name => "Collaboration"
-  has_many :collaborators, :class_name => "user", :through => :collaboration
+  has_many :collaborations
+  has_many :collaborators, :class_name => "user", :through => :collaborations
 end

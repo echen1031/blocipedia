@@ -16,5 +16,14 @@
       <%= link_to "Delete", @wiki, method: :delete, class: 'btn btn-danger', :data => { :confirm => 'Are you sure you want to delete this wiki?' } %>
     <% end %>
   </div>
+  <%= form_tag wiki_collaborations_url(@wiki), method: :post do %>
+      <input type="text" name="username" class="span2 search-query">
+      <button type="submit" class="btn">Add Collaborator<i class="icon-search"></i></button>
+  <% end %>
 </div>
 
+<% flash.each do |key, value| %>
+  <div class"<%= flash_class(key) %>">
+    <%= value %>
+  </div>
+<% end %>

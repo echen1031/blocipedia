@@ -1,9 +1,9 @@
 class CollaborationsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :set_wiki
 
   def index
-    @wiki_collaborators = @wiki.collaborator
-    @users = User.all
+    @wiki_collaborators = @wiki.collaborators
   end
 
   def new
@@ -11,16 +11,18 @@ class CollaborationsController < ApplicationController
   end
 
   def create
-    @collaborator = User.find_by_username(params[:username])
-    @collaboration = @wiki.collaborations.build(user_id: @collaborator.id)
-    
-    
-    
-    if WikiPolicy.new(@wiki).allow_to_add_collaboration?(@collaboration) && @collaboration.save
-      redirect_to wiki_collaborations_path(@wiki), notice: 'Collaborator added successfully'
+    @collaborator = User.where(username: params[:username]).first
+
+    if @collaborator.blank?
+      redirect_to wiki_url(@wiki), flash[:error] = "could not find username"
     else
-      flash[:notice] = 'Error adding Collaborator. Please try again.'
-      render :new
+      @collaboration = @wiki.collaborations.build(user_id: @collaborator.id)
+    
+      if current_user.premium? && @collaboration.save
+        redirect_to wiki_path(@wiki), flash[:success] = "Collaborator added successfully"
+      else
+        redirect_to wiki_url(@wiki), flash[:error] =  "Could not add collaborator"
+      end
     end
   end
 

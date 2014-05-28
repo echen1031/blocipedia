@@ -50,4 +50,6 @@ gem 'haml-rails'
 gem 'pundit'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'stripe-ruby-mock', '~> 1.10.1.7'
+gem 'rails-simple-search', '~> 0.9.7'
+
 

@@ -1,6 +1,4 @@
 Blocipedia::Application.routes.draw do
-  get "collaborators/index"
-  get "collaborators/new"
   devise_for :users
   root :to => "welcome#index"
   resources :wikis do
@@ -10,5 +8,6 @@ Blocipedia::Application.routes.draw do
   resources :charges, only: [:new, :create]
   resources :users, only: [:index, :show, :udpate, :destroy, :edit]
   resources :sharedwikis
+  
 
 end
